@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:tvnet/resources/constants.dart';
 
 class PieChart extends StatelessWidget {
   final String lastUpdate = '10 Jun 2022';
@@ -7,6 +8,19 @@ class PieChart extends StatelessWidget {
   const PieChart({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    bool darkModeEnabled = false;
+    _checkIfDarkModeEnabled() {
+      final ThemeData theme = Theme.of(context);
+      theme.brightness == MyTheme.darkTheme.brightness
+          ? darkModeEnabled = true
+          : darkModeEnabled = false;
+      if (darkModeEnabled) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return LayoutBuilder(
       builder: (context, constraints) {
         return Padding(
@@ -69,6 +83,9 @@ class PieChart extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Card(
+                          color: _checkIfDarkModeEnabled()
+                              ? darkModeBoxColor
+                              : lightModeBoxColor,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(color: Colors.deepOrange),
                             borderRadius: BorderRadius.circular(20.0),
@@ -94,6 +111,9 @@ class PieChart extends StatelessWidget {
                       ),
                       Expanded(
                         child: Card(
+                          color: _checkIfDarkModeEnabled()
+                              ? darkModeBoxColor
+                              : lightModeBoxColor,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(color: Colors.deepOrange),
                             borderRadius: BorderRadius.circular(20.0),
@@ -177,6 +197,19 @@ class BarGraphChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool darkModeEnabled = false;
+    _checkIfDarkModeEnabled() {
+      final ThemeData theme = Theme.of(context);
+      theme.brightness == MyTheme.darkTheme.brightness
+          ? darkModeEnabled = true
+          : darkModeEnabled = false;
+      if (darkModeEnabled) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return LayoutBuilder(builder: (context, constraints) {
       return Padding(
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -266,6 +299,9 @@ class BarGraphChart extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Card(
+                        color: _checkIfDarkModeEnabled()
+                            ? darkModeBoxColor
+                            : lightModeBoxColor,
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.deepOrange),
                           borderRadius: BorderRadius.circular(20.0),
@@ -291,6 +327,9 @@ class BarGraphChart extends StatelessWidget {
                     ),
                     Expanded(
                       child: Card(
+                        color: _checkIfDarkModeEnabled()
+                            ? darkModeBoxColor
+                            : lightModeBoxColor,
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.deepOrange),
                           borderRadius: BorderRadius.circular(20.0),

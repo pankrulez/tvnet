@@ -3,44 +3,55 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class ShadedContainer extends StatelessWidget {
-  Widget child;
-  dynamic padding;
-  dynamic margin;
+  final dynamic child;
+  final dynamic padding;
+  final dynamic margin;
 
-  ShadedContainer({required this.child, required this.padding, this.margin});
+  const ShadedContainer(
+      {Key? key, required this.child, required this.padding, this.margin})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
-    //Brightness brightness = Brightness.light;
+    bool _darkModeEnabled = false;
+    _checkIfDarkModeEnabled() {
+      final ThemeData theme = Theme.of(context);
+      theme.brightness == MyTheme.darkTheme.brightness
+          ? _darkModeEnabled = true
+          : _darkModeEnabled = false;
+      if (_darkModeEnabled) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     return Container(
       padding: padding,
       margin: margin,
       decoration: BoxDecoration(
-        color: brightness == Brightness.dark
-            ? darkModeBoxColor
-            : lightModeBoxColor,
+        color: _checkIfDarkModeEnabled() ? darkModeBoxColor : lightModeBoxColor,
         border: Border.all(
-            color: brightness == Brightness.dark
+            color: _checkIfDarkModeEnabled()
                 ? darkModeBoxColor
                 : lightModeBoxColor),
         borderRadius: BorderRadius.circular(20.0),
         boxShadow: [
           BoxShadow(
-            color: brightness == Brightness.dark
+            color: _checkIfDarkModeEnabled()
                 ? darkModeShadow1Color
                 : lightModeShadow1Color,
             blurRadius: 15,
             spreadRadius: 1,
-            offset: Offset(4.0, 4.0),
+            offset: const Offset(4.0, 4.0),
           ),
           BoxShadow(
-            color: brightness == Brightness.dark
+            color: _checkIfDarkModeEnabled()
                 ? darkModeShadow2Color
                 : lightModeShadow2Color,
             blurRadius: 15,
             spreadRadius: 1,
-            offset: Offset(-4.0, -4.0),
+            offset: const Offset(-4.0, -4.0),
           )
         ],
       ),

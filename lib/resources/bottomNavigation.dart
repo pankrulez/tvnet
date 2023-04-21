@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tvnet/resources/dashboard_resources.dart';
 import 'package:tvnet/resources/shadedContainer.dart';
 import 'package:tvnet/screens/my_plan.dart';
 import 'package:tvnet/screens/profile.dart';
 import 'package:tvnet/screens/support.dart';
-import '../screens/dashboard.dart';
 import 'constants.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -17,7 +17,7 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   static int selectedIndex = 0;
   static final List<Widget> _widgetOptions = <Widget>[
-    Dashboard(),
+    DashboardResources(navKey: navigationKey),
     const RechargePlans(),
     const SupportPage(),
     const ProfilePage(),
@@ -29,13 +29,16 @@ class _BottomNavigationState extends State<BottomNavigation> {
     });
   }
 
+  static GlobalKey navigationKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     Brightness brightness = MediaQuery.of(context).platformBrightness;
     //Brightness brightness = Brightness.light;
     return BottomNavigationBar(
+      key: navigationKey,
       backgroundColor:
-          brightness == Brightness.dark ? darkModeBoxColor : lightModeBoxColor,
+          Brightness.dark == true ? darkModeBoxColor : lightModeBoxColor,
       selectedItemColor: Colors.blue,
       unselectedItemColor: Colors.grey,
       showUnselectedLabels: false,
@@ -51,11 +54,11 @@ class _BottomNavigationState extends State<BottomNavigation> {
         fontSize: 12.0,
         fontWeight: FontWeight.normal,
       ),
-      items: <BottomNavigationBarItem>[
+      items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: ShadedContainer(
-            padding: const EdgeInsets.all(8.0),
-            child: const Icon(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
               Icons.home,
             ),
           ),
@@ -63,8 +66,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
         ),
         BottomNavigationBarItem(
           icon: ShadedContainer(
-            padding: const EdgeInsets.all(8.0),
-            child: const Icon(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
               Icons.add_task_rounded,
             ),
           ),
@@ -72,8 +75,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
         ),
         BottomNavigationBarItem(
           icon: ShadedContainer(
-            padding: const EdgeInsets.all(8.0),
-            child: const Icon(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
               Icons.support_agent_rounded,
             ),
           ),
@@ -81,8 +84,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
         ),
         BottomNavigationBarItem(
           icon: ShadedContainer(
-            padding: const EdgeInsets.all(8.0),
-            child: const Icon(
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
               CupertinoIcons.profile_circled,
             ),
           ),
@@ -91,7 +94,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
       ],
       currentIndex: selectedIndex,
       onTap: onItemTapped,
-      //backgroundColor: Colors.lightBlue,
     );
   }
 }

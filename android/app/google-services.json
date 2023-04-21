@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "268521430828",
+    "project_id": "tvnet-a8c4e",
+    "storage_bucket": "tvnet-a8c4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268521430828:android:98bf31fcc1fb80a5659689",
+        "android_client_info": {
+          "package_name": "com.example.tvnet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268521430828-h01vn6b2cvcjl8424p3e9v8m8ab4nt26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5OPQSYayoYmx5o6VmukUen4Z3JkLt1zk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268521430828-h01vn6b2cvcjl8424p3e9v8m8ab4nt26.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

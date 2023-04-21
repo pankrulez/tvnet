@@ -16,7 +16,7 @@ class RazorPay extends StatefulWidget {
 }
 
 class _RazorPayState extends State<RazorPay> {
-  String plan = '1299_200mbps_unlimited';
+  String plan = '200mbps Unlimited';
   String data = '3000 GB';
   String planValidity = '1 month';
   double packagePrice = 1349.00;
@@ -25,345 +25,362 @@ class _RazorPayState extends State<RazorPay> {
   String primarySpeed = '100 mbps';
   String secondarySpeed = '5 mbps';
   String secondaryData = 'unlimited';
+  String providerName = 'Tvnet Pvt Ltd.';
   DateTime currentDate = DateTime.now();
-  RechargeSchedule? schedule = RechargeSchedule.later;
+  RechargeSchedule? schedule = RechargeSchedule.now;
 
   //static const platform = MethodChannel("razorpay_flutter");
 
-  late Razorpay _razorpay;
+  Razorpay _razorpay = Razorpay();
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    bool darkModeEnabled = false;
+    _checkIfDarkModeEnabled() {
+      final ThemeData theme = Theme.of(context);
+      theme.brightness == MyTheme.darkTheme.brightness
+          ? darkModeEnabled = true
+          : darkModeEnabled = false;
+      if (darkModeEnabled) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     Orientation orientation = MediaQuery.of(context).orientation;
     //Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Row(
-                    children: const [
-                      /*BackButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),*/
-                      IconButton(
-                        onPressed: null,
-                        icon: Icon(Icons.add, color: Colors.transparent),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                children: const [
-                  Text(
-                    'PLAN DETAILS',
-                    style: TextStyle(),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.hourglass_bottom_outlined),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.power_settings_new_outlined),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          flexibleSpace: kgradientContainer,
+          elevation: 5.0,
+          title: const Text('PLAN DETAILS'),
+          centerTitle: true,
+          backgroundColor: Colors.blue.withOpacity(0.7),
+
+          //flexibleSpace: kGradientContainer,
         ),
         body: SafeArea(
-          child: Material(
-            color: brightness == Brightness.dark
-                ? darkModeBoxColor
-                : lightModeBoxColor,
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-              child: Expanded(
-                child: ListView(
-                  physics: orientation == Orientation.portrait
-                      ? const NeverScrollableScrollPhysics()
-                      : const ClampingScrollPhysics(),
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 100.0,
-                          height: 100.0,
-                          color: Colors.transparent,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Icon(
-                                  Icons.add_a_photo_outlined,
-                                  size: 100.0,
-                                  color: brightness == Brightness.dark
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Expanded(
+              child: ListView(
+                physics: orientation == Orientation.portrait
+                    ? const NeverScrollableScrollPhysics()
+                    : const ClampingScrollPhysics(),
+                children: [
+                  /*Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 100.0,
+                        height: 100.0,
+                        color: Colors.transparent,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Expanded(
+                              child: Icon(
+                                Icons.add_a_photo_outlined,
+                                size: 100.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10.0),*/
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Card(
+                        color: _checkIfDarkModeEnabled()
+                            ? darkModeBoxColor
+                            : lightModeBoxColor,
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(color: Colors.deepOrange),
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: 'Plan Name - ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: _checkIfDarkModeEnabled()
                                       ? Colors.white
-                                      : Colors.white,
+                                      : Colors.black,
+                                ),
+                              ),
+                              TextSpan(
+                                  text: plan,
+                                  style: TextStyle(
+                                    color: _checkIfDarkModeEnabled()
+                                        ? Colors.white
+                                        : Colors.black,
+                                  )),
+                            ]),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: ShadedContainer(
+                          margin:
+                              const EdgeInsets.only(left: 10.0, right: 10.0),
+                          padding:
+                              const EdgeInsets.only(top: 22.0, bottom: 22.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Data',
+                                  style: kItalicText,
+                                ),
+                              ),
+                              const SizedBox(height: 14.0),
+                              Center(
+                                child: Text(
+                                  data,
+                                  style: kBoldItalicBlueText,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Card(
-                          color: brightness == Brightness.dark
-                              ? darkModeBoxColor
-                              : lightModeBoxColor,
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(color: Colors.deepOrange),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              'Plan Name - $plan',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20.0),
-                    const SizedBox(height: 20.0),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: ShadedContainer(
-                            margin:
-                                const EdgeInsets.only(left: 10.0, right: 10.0),
-                            padding:
-                                const EdgeInsets.only(top: 22.0, bottom: 22.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                const Center(
-                                  child: Text(
-                                    'Data',
-                                  ),
+                      ),
+                      Expanded(
+                        child: ShadedContainer(
+                          margin:
+                              const EdgeInsets.only(left: 10.0, right: 10.0),
+                          padding:
+                              const EdgeInsets.only(top: 22.0, bottom: 22.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Validity',
+                                  style: kItalicText,
                                 ),
-                                const SizedBox(height: 14.0),
-                                Center(
-                                  child: Text(
-                                    data,
-                                    style: const TextStyle(color: Colors.blue),
-                                  ),
+                              ),
+                              const SizedBox(height: 14.0),
+                              Center(
+                                child: Text(
+                                  planValidity,
+                                  style: kBoldItalicBlueText,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ShadedContainer(
-                            margin:
-                                const EdgeInsets.only(left: 10.0, right: 10.0),
-                            padding:
-                                const EdgeInsets.only(top: 22.0, bottom: 22.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                const Center(
-                                  child: Text(
-                                    'Validity',
-                                  ),
-                                ),
-                                const SizedBox(height: 14.0),
-                                Center(
-                                  child: Text(
-                                    planValidity,
-                                    style: const TextStyle(color: Colors.blue),
-                                  ),
-                                ),
-                              ],
-                            ),
+                      ),
+                      Expanded(
+                        child: ShadedContainer(
+                          margin:
+                              const EdgeInsets.only(left: 10.0, right: 10.0),
+                          padding:
+                              const EdgeInsets.only(top: 22.0, bottom: 22.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Package Price',
+                                style: kItalicText,
+                              ),
+                              const SizedBox(height: 14.0),
+                              Text(
+                                '₹ $packagePrice',
+                                style: kBoldItalicBlueText,
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ShadedContainer(
-                            margin:
-                                const EdgeInsets.only(left: 10.0, right: 10.0),
-                            padding:
-                                const EdgeInsets.only(top: 22.0, bottom: 22.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Package Price',
-                                ),
-                                const SizedBox(height: 14.0),
-                                Text(
-                                  '₹ $packagePrice',
-                                  style: const TextStyle(color: Colors.blue),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20.0),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ShadedContainer(
-                            padding: const EdgeInsets.all(20.0),
-                            margin: const EdgeInsets.only(
-                                top: 10.0,
-                                bottom: 10.0,
-                                right: 10.0,
-                                left: 10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    const Text('Plan Type'),
-                                    const Spacer(),
-                                    Text(planType),
-                                  ],
-                                ),
-                                const Divider(
-                                  height: 20.0,
-                                  thickness: 0.25,
-                                  color: Colors.blue,
-                                ),
-                                Row(
-                                  children: [
-                                    const Text('Usage Time'),
-                                    const Spacer(),
-                                    Text(usageTime),
-                                  ],
-                                ),
-                                const Divider(
-                                  height: 20.0,
-                                  thickness: 0.25,
-                                  color: Colors.blue,
-                                ),
-                                Row(
-                                  children: [
-                                    const Text('Primary Speed'),
-                                    const Spacer(),
-                                    Text(primarySpeed),
-                                  ],
-                                ),
-                                const Divider(
-                                  height: 20.0,
-                                  thickness: 0.25,
-                                  color: Colors.blue,
-                                ),
-                                Row(
-                                  children: [
-                                    const Text('Secondary Speed'),
-                                    const Spacer(),
-                                    Text(secondarySpeed),
-                                  ],
-                                ),
-                                const Divider(
-                                  height: 20.0,
-                                  thickness: 0.25,
-                                  color: Colors.blue,
-                                ),
-                                Row(
-                                  children: [
-                                    const Text('Secondary Data'),
-                                    const Spacer(),
-                                    Text(secondaryData),
-                                  ],
-                                ),
-                                const Divider(
-                                  height: 20.0,
-                                  thickness: 0.25,
-                                  color: Colors.blue,
-                                ),
-                                Row(
-                                  children: const [
-                                    /*ListTile(
-                                        title: Text('Later'),
-                                        leading: Radio<RechargeSchedule>(
-                                          value: RechargeSchedule.later,
-                                          groupValue: schedule,
-                                          onChanged: (RechargeSchedule? value) {
-                                            setState(
-                                              () {
-                                                schedule = value;
-                                              },
-                                            );
-                                          },
-                                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ShadedContainer(
+                          padding: const EdgeInsets.all(20.0),
+                          margin: const EdgeInsets.only(
+                              top: 10.0, bottom: 10.0, right: 10.0, left: 10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'Plan Type',
+                                    style: kItalicText,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    planType,
+                                    style: kBoldItalicText,
+                                  ),
+                                ],
+                              ),
+                              const Divider(
+                                height: 20.0,
+                                thickness: 0.25,
+                                color: Colors.blue,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Usage Time',
+                                    style: kItalicText,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    usageTime,
+                                    style: kBoldItalicText,
+                                  ),
+                                ],
+                              ),
+                              const Divider(
+                                height: 20.0,
+                                thickness: 0.25,
+                                color: Colors.blue,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Primary Speed',
+                                    style: kItalicText,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    primarySpeed,
+                                    style: kBoldItalicText,
+                                  ),
+                                ],
+                              ),
+                              const Divider(
+                                height: 20.0,
+                                thickness: 0.25,
+                                color: Colors.blue,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Secondary Speed',
+                                    style: kItalicText,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    secondarySpeed,
+                                    style: kBoldItalicText,
+                                  ),
+                                ],
+                              ),
+                              const Divider(
+                                height: 20.0,
+                                thickness: 0.25,
+                                color: Colors.blue,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Secondary Data',
+                                    style: kItalicText,
+                                  ),
+                                  const Spacer(),
+                                  Text(
+                                    secondaryData,
+                                    style: kBoldItalicText,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: ListTile(
+                                      title: Text(
+                                        'Later',
+                                        style: kItalicText,
                                       ),
-                                      ListTile(
-                                        title: Text('Now'),
-                                        leading: Radio<RechargeSchedule>(
-                                          value: RechargeSchedule.now,
-                                          groupValue: schedule,
-                                          onChanged: (RechargeSchedule? value) {
-                                            setState(
-                                              () {
-                                                schedule = value;
-                                              },
-                                            );
-                                          },
-                                        ),
-                                      ),*/
-                                  ],
-                                ),
-                              ],
-                            ),
+                                      leading: Radio<RechargeSchedule>(
+                                        value: RechargeSchedule.later,
+                                        groupValue: schedule,
+                                        onChanged: (RechargeSchedule? value) {
+                                          setState(
+                                            () {
+                                              schedule = value;
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: ListTile(
+                                      title: Text(
+                                        'Now',
+                                        style: kItalicText,
+                                      ),
+                                      leading: Radio<RechargeSchedule>(
+                                        value: RechargeSchedule.now,
+                                        groupValue: schedule,
+                                        onChanged: (RechargeSchedule? value) {
+                                          setState(
+                                            () {
+                                              schedule = value;
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GradientButton(
-                          onTap: openCheckout,
-                          padding: const EdgeInsets.only(
-                            top: 10.0,
-                            bottom: 10.0,
-                            right: 30.0,
-                            left: 30.0,
-                          ),
-                          margin: const EdgeInsets.only(top: 20),
-                          child: const Text(
-                            'Purchase Now',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20.0,
-                            ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GradientButton(
+                        onTap: openCheckout,
+                        padding: const EdgeInsets.only(
+                          top: 12.0,
+                          bottom: 12.0,
+                          right: 35.0,
+                          left: 35.0,
+                        ),
+                        child: const Text(
+                          'Purchase Now',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white70,
+                            fontSize: 20.0,
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 20.0),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
+                ],
               ),
             ),
           ),
@@ -389,13 +406,17 @@ class _RazorPayState extends State<RazorPay> {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_live_ILgsfZCZoFIKMb',
-      'amount': packagePrice,
-      'name': 'Triveniview Enterprises Pvt Ltd',
+      'key': 'rzp_test_6nRFj6uxCN7vYZ',
+      'amount': num.parse(packagePrice.toString()) * 100,
+      'name': providerName,
       'description': 'Internet Plan',
+      'timeout': '300',
+      'theme.color': '#2d77c2',
+      'currency': 'INR',
+      'allow_rotation': 'true',
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      //'prefill': {'contact': '9876543210', 'email': 'test@razorpay.com'},
       'external': {
         'wallets': ['paytm']
       }

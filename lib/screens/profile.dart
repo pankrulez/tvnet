@@ -18,223 +18,276 @@ class ProfilePage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SafeArea(
-          child: Material(
-            color: brightness == Brightness.dark
-                ? darkModeBoxColor
-                : lightModeBoxColor,
-            child: Padding(
-              padding:
-                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Material(
-                                  elevation: 15.0,
-                                  shape: const CircleBorder(),
-                                  color: Colors.transparent,
-                                  child: Container(
-                                    height: 100.0,
-                                    width: 100.0,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
-                                    ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Material(
+                                elevation: 15.0,
+                                shape: const CircleBorder(),
+                                color: Colors.transparent,
+                                child: Container(
+                                  height: 100.0,
+                                  width: 100.0,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
                                   ),
                                 ),
-                                const SizedBox(width: 10),
-                                Column(
-                                  children: [
-                                    Text(
-                                      username,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              ),
+                              const SizedBox(width: 10),
+                              Column(
+                                children: [
+                                  Text(
+                                    username,
+                                    style: kBoldItalicText,
+                                  ),
+                                  GradientButton(
+                                    padding: const EdgeInsets.only(
+                                      top: 12,
+                                      bottom: 12,
+                                      right: 20,
+                                      left: 20,
                                     ),
-                                    GradientButton(
-                                      padding: const EdgeInsets.only(
-                                        top: 10,
-                                        bottom: 10,
-                                        right: 15,
-                                        left: 15,
-                                      ),
-                                      margin: const EdgeInsets.only(top: 5.0),
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, EditProfilePage.id);
-                                      },
-                                      child: const Text('Edit Profile'),
+                                    margin: const EdgeInsets.only(top: 5.0),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, EditProfilePage.id);
+                                    },
+                                    child: Text(
+                                      'Edit Profile',
+                                      style: kButtonText,
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('My Balance'),
-                            Text('₹ $balance'),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: ListView(
-                      physics: orientation == Orientation.portrait
-                          ? const NeverScrollableScrollPhysics()
-                          : const ClampingScrollPhysics(),
-                      children: [
-                        const SizedBox(height: 20.0),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ShadedContainer(
-                                padding: const EdgeInsets.all(20.0),
-                                margin: const EdgeInsets.only(
-                                    top: 10.0,
-                                    bottom: 10.0,
-                                    right: 10.0,
-                                    left: 10.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: const [
-                                        Icon(Icons.ac_unit_rounded),
-                                        SizedBox(width: 20.0),
-                                        Text('Triveniview Enterprises Pvt Ltd'),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      height: 20.0,
-                                      thickness: 0.25,
-                                      color: Colors.blue,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Icon(Icons.manage_accounts_rounded),
-                                        SizedBox(width: 20.0),
-                                        Text('Alex Johnson'),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      height: 20.0,
-                                      thickness: 0.25,
-                                      color: Colors.blue,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Icon(Icons.call),
-                                        SizedBox(width: 20.0),
-                                        Text('9876543210'),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      height: 20.0,
-                                      thickness: 0.25,
-                                      color: Colors.blue,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Icon(Icons.mail_outline_rounded),
-                                        SizedBox(width: 20.0),
-                                        Text('abc@abc.com'),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      height: 20.0,
-                                      thickness: 0.25,
-                                      color: Colors.blue,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Icon(Icons.router_rounded),
-                                        SizedBox(width: 20.0),
-                                        Text('7C:A8:4F:67:08:09'),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      height: 20.0,
-                                      thickness: 0.25,
-                                      color: Colors.blue,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Icon(Icons.cake_rounded),
-                                        SizedBox(width: 20.0),
-                                        Text('01/01/2001'),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      height: 20.0,
-                                      thickness: 0.25,
-                                      color: Colors.blue,
-                                    ),
-                                    Row(
-                                      children: const [
-                                        Icon(Icons.home_rounded),
-                                        SizedBox(width: 20.0),
-                                        Flexible(
-                                          child: Text('12 Grand Avenue NY'),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GradientButton(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, UploadedDocuments.id);
-                              },
-                              padding: const EdgeInsets.only(
-                                top: 12.0,
-                                bottom: 12.0,
-                                right: 40.0,
-                                left: 40.0,
-                              ),
-                              margin: const EdgeInsets.only(
-                                top: 20.0,
-                                bottom: 10.0,
-                              ),
-                              child: const Text(
-                                'View Document',
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'My Balance',
+                            style: kItalicText,
+                          ),
+                          RichText(
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: '₹ ',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20.0,
+                                  fontStyle: FontStyle.italic,
+                                  color: Brightness.dark == true
+                                      ? Colors.white
+                                      : Colors.black,
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20.0),
-                      ],
+                              TextSpan(
+                                text: balance.toString(),
+                                style: kBoldItalicBlueText,
+                              ),
+                            ]),
+                          ),
+                        ],
+                      ),
                     ),
+                  ],
+                ),
+                Expanded(
+                  child: ListView(
+                    physics: orientation == Orientation.portrait
+                        ? const NeverScrollableScrollPhysics()
+                        : const ClampingScrollPhysics(),
+                    children: [
+                      const SizedBox(height: 20.0),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ShadedContainer(
+                              padding: const EdgeInsets.all(20.0),
+                              margin: const EdgeInsets.only(
+                                top: 10.0,
+                                bottom: 10.0,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(
+                                        Icons.ac_unit_rounded,
+                                        color: Colors.amberAccent,
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Text(
+                                        'Testing App Enterprises Pvt Ltd',
+                                        style: kItalicText,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    height: 20.0,
+                                    thickness: 0.25,
+                                    color: Colors.blue,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.manage_accounts_rounded,
+                                        color: Colors.indigoAccent,
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Text(
+                                        'Alex Johnson',
+                                        style: kItalicText,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    height: 20.0,
+                                    thickness: 0.25,
+                                    color: Colors.blue,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.call,
+                                        color: Colors.greenAccent,
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Text(
+                                        '9876543210',
+                                        style: kItalicText,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    height: 20.0,
+                                    thickness: 0.25,
+                                    color: Colors.blue,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.mail_outline_rounded,
+                                        color: Colors.redAccent,
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Text(
+                                        'abc@abc.com',
+                                        style: kItalicText,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    height: 20.0,
+                                    thickness: 0.25,
+                                    color: Colors.blue,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.router_rounded,
+                                        color: Colors.grey,
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Text(
+                                        '7C:A8:4F:67:08:09',
+                                        style: kItalicText,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    height: 20.0,
+                                    thickness: 0.25,
+                                    color: Colors.blue,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.cake_rounded,
+                                        color: Colors.orangeAccent,
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Text(
+                                        '01/01/2001',
+                                        style: kItalicText,
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(
+                                    height: 20.0,
+                                    thickness: 0.25,
+                                    color: Colors.blue,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.home_rounded,
+                                        color: Colors.blueAccent,
+                                      ),
+                                      const SizedBox(width: 20.0),
+                                      Flexible(
+                                        child: Text(
+                                          '12 Grand Avenue NY',
+                                          style: kItalicText,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GradientButton(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, UploadedDocuments.id);
+                            },
+                            padding: const EdgeInsets.only(
+                              top: 12.0,
+                              bottom: 12.0,
+                              right: 35.0,
+                              left: 35.0,
+                            ),
+                            child: const Text(
+                              'View Document',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 20.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20.0),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

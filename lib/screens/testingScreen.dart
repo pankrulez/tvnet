@@ -95,7 +95,7 @@ class _RazorPayState extends State<RazorPay> {
                 ),
               ],
             ),
-            flexibleSpace: kgradientContainer,
+            flexibleSpace: kGradientContainer,
           ),
           body: SafeArea(
             child: Material(

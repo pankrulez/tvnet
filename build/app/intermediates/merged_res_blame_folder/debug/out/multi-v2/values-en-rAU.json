@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\Pankaj\\AndroidStudioProjects\\tvnet\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Pankaj\\.gradle\\caches\\transforms-3\\1edd10558a75ce738ad4fca961ccb9b1\\transformed\\jetified-play-services-wallet-18.1.3\\res\\values-en-rAU\\values.xml",
+                    "source": "C:\\Users\\Pankaj\\.gradle\\caches\\transforms-3\\8d27875c8868541af3b723a8036b0292\\transformed\\jetified-play-services-wallet-18.1.3\\res\\values-en-rAU\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -13,21 +13,38 @@
                         "endOffsets": "276"
                     },
                     "to": {
-                        "startLines": "3",
+                        "startLines": "7",
                         "startColumns": "4",
-                        "startOffsets": "156",
+                        "startOffsets": "559",
                         "endColumns": "74",
-                        "endOffsets": "226"
+                        "endOffsets": "629"
                     }
                 },
                 {
-                    "source": "C:\\Users\\Pankaj\\.gradle\\caches\\transforms-3\\acbce933e4b464a5224ed377a62db1f5\\transformed\\core-1.6.0\\res\\values-en-rAU\\values-en-rAU.xml",
+                    "source": "C:\\Users\\Pankaj\\.gradle\\caches\\transforms-3\\7eb59ef980191ce3b93cb464bd329121\\transformed\\browser-1.4.0\\res\\values-en-rAU\\values-en-rAU.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,153,250,359",
+                        "endColumns": "97,96,108,98",
+                        "endOffsets": "148,245,354,453"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Pankaj\\.gradle\\caches\\transforms-3\\2b16aff622b2216ba5d29dee35ba06eb\\transformed\\core-1.6.0\\res\\values-en-rAU\\values-en-rAU.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
                         "endColumns": "100",
                         "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "458",
+                        "endColumns": "100",
+                        "endOffsets": "554"
                     }
                 }
             ]

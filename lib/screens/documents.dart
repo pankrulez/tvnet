@@ -11,53 +11,10 @@ class UploadedDocuments extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: [
-                  Row(
-                    children: const [
-                      /*BackButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),*/
-                      /*IconButton(
-                        onPressed: null,
-                        icon: Icon(Icons.add, color: Colors.transparent),
-                      ),*/
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                children: const [
-                  Text(
-                    'DOCUMENTS',
-                    style: TextStyle(),
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: const [
-                      /*IconButton(
-                        onPressed: null,
-                        icon: Icon(Icons.add, color: Colors.transparent),
-                      ),*/
-                      IconButton(
-                        onPressed: null,
-                        icon: Icon(Icons.add, color: Colors.transparent),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-          flexibleSpace: kgradientContainer,
+          elevation: 5.0,
+          title: const Text('DOCUMENTS'),
+          centerTitle: true,
+          backgroundColor: Colors.blue.withOpacity(0.7),
         ),
         body: Column(
           children: [
@@ -68,6 +25,7 @@ class UploadedDocuments extends StatelessWidget {
                   'Uploaded Documents',
                   style: TextStyle(
                     fontSize: 20.0,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ],

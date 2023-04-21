@@ -14,49 +14,32 @@ class AllPlans extends StatelessWidget {
       length: 5,
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: CustomSearchDelegate(),
+                );
+              },
+              icon: const Icon(Icons.search),
+            )
+          ],
           elevation: 5.0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                children: const [
-                  /*BackButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),*/
-                ],
-              ),
-              Column(
-                children: const [
-                  Text('INTERNET PLANS'),
-                ],
-              ),
-              Column(
-                children: const [
-                  IconButton(
-                    onPressed: null,
-                    icon: Icon(Icons.support, color: Colors.transparent),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          title: const Text('INTERNET PLANS'),
           centerTitle: true,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: <Color>[Colors.deepOrange, Colors.blue],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(0.9, 1.0),
-                stops: [0.0, 1.0],
-                tileMode: TileMode.clamp,
-              ),
-            ),
-          ),
-          bottom: const TabBar(
+          backgroundColor: Colors.blue.withOpacity(0.5),
+          bottom: TabBar(
             isScrollable: true,
-            tabs: <Widget>[
+            indicator: BoxDecoration(
+              color: Colors.lightBlueAccent.withOpacity(0.5),
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(15.0),
+                topLeft: Radius.circular(15.0),
+              ),
+              border: const Border.symmetric(),
+            ),
+            tabs: const <Widget>[
               Tab(
                 text: 'All',
               ),
@@ -74,40 +57,22 @@ class AllPlans extends StatelessWidget {
               ),
             ],
             indicatorColor: Colors.white,
-            /*indicator: BoxDecoration(
-                backgroundBlendMode: BlendMode.softLight,
-                color: Color(0xff00e5ff),
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20.0),
-                  topLeft: Radius.circular(20.0),
-                ),
-                border: Border.symmetric()),*/
           ),
         ),
         body: SafeArea(
           child: Material(
             color: Colors.transparent,
             child: Padding(
-              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              padding:
+                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               child: TabBarView(
                 children: <Widget>[
                   Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Text(
-                            'Space for search bar',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Expanded(
+                    children: const [
+                      Expanded(
                         child: InternetPlans(),
                       ),
-                      const SizedBox(height: 20.0),
+                      SizedBox(height: 20.0),
                     ],
                   ),
                   Column(
@@ -193,5 +158,81 @@ class AllPlans extends StatelessWidget {
         // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
+  }
+}
+
+class CustomSearchDelegate extends SearchDelegate {
+  List<String> searchTerms = [
+    'limited',
+    'unlimited',
+    'fup',
+    'day',
+    'night',
+    '30',
+    '100',
+    '50',
+    '150',
+    '200'
+  ];
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      )
+    ];
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: const Icon(Icons.arrow_back_ios),
+    );
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var items in searchTerms) {
+      if (items.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(items);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(
+            title: Text(result),
+          );
+        });
+    throw UnimplementedError();
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var items in searchTerms) {
+      if (items.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(items);
+      }
+    }
+    return ListView.builder(
+        itemCount: matchQuery.length,
+        itemBuilder: (context, index) {
+          var result = matchQuery[index];
+          return ListTile(
+            title: Text(result),
+          );
+        });
+    throw UnimplementedError();
   }
 }
