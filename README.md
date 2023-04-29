@@ -1,6 +1,6 @@
 # tvnet
 
-tvnet demo project
+A basic internet provider app
 
 ## Getting Started
 
