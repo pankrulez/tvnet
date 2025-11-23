@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../resources/shadedContainer.dart';
+import '../resources/shaded_container.dart';
 import '../resources/constants.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
+import 'package:tvnet/widgets/adaptive_controls.dart';
 
 class CreateTicket extends StatefulWidget {
   static String id = 'new_ticket_page';
@@ -12,19 +14,16 @@ class CreateTicket extends StatefulWidget {
 
 class _CreateTicketState extends State<CreateTicket> {
   String dropdownValue = 'Speed Issue';
+
   @override
   Widget build(BuildContext context) {
     Orientation orientation = MediaQuery.of(context).orientation;
-    //Brightness brightness = MediaQuery.of(context).platformBrightness;
-    //Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
+      appBar: AdaptiveAppBar(
         elevation: 5.0,
         title: const Text('CREATE NEW TICKET'),
         centerTitle: true,
-        backgroundColor: Colors.blue.withOpacity(0.7),
-
-        //flexibleSpace: kGradientContainer,
+        backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
       ),
       body: SafeArea(
         child: Expanded(
@@ -57,24 +56,6 @@ class _CreateTicketState extends State<CreateTicket> {
                                 Icons.view_headline,
                                 color: Colors.indigoAccent,
                               ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20.0),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 1.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 2.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
                             ),
                           ),
                           const Divider(
@@ -90,24 +71,6 @@ class _CreateTicketState extends State<CreateTicket> {
                                 Icons.mail_outline_rounded,
                                 color: Colors.redAccent,
                               ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20.0),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 1.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 2.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
                             ),
                           ),
                           const Divider(
@@ -122,24 +85,6 @@ class _CreateTicketState extends State<CreateTicket> {
                               prefixIcon: Icon(
                                 Icons.call,
                                 color: Colors.greenAccent,
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20.0),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 1.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 2.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
                               ),
                             ),
                           ),
@@ -177,27 +122,20 @@ class _CreateTicketState extends State<CreateTicket> {
                                     underline: Container(
                                       height: 0.0,
                                     ),
-                                    //hint: const Text('Select Reason'),
-                                    items: <String>[
-                                      'Speed Issue',
-                                      'No Internet',
-                                      'Other Issue'
-                                    ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
-                                          child: Text(value),
-                                        );
-                                      },
-                                    ).toList(),
+                                    items: <String>['Speed Issue', 'No Internet', 'Other Issue']
+                                        .map<DropdownMenuItem<String>>((String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
                                     onChanged: (String? newValue) {
                                       setState(() {
                                         dropdownValue = newValue!;
                                       });
                                     },
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(32.0),
-                                    ),
+                                    borderRadius:
+                                        const BorderRadius.all(Radius.circular(32.0)),
                                   ),
                                 ),
                               ],
@@ -218,27 +156,34 @@ class _CreateTicketState extends State<CreateTicket> {
                                 Icons.text_snippet_outlined,
                                 color: Colors.yellowAccent,
                               ),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20.0),
-                              border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 1.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.lightBlueAccent, width: 2.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(32.0)),
-                              ),
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Adaptive CHOOSE FILE button
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: SizedBox(
+                      height: 48,
+                      child: AdaptiveButton(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        onPressed: () {},
+                        child: const Text(
+                          'CHOOSE FILE',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 17,
+                          ),
+                        ),
                       ),
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tvnet/resources/shadedContainer.dart';
+import 'package:tvnet/resources/shaded_container.dart';
 import '../resources/constants.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
 import 'package:unicons/unicons.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -28,11 +29,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
     //Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           elevation: 5.0,
           title: const Text('EDIT PROFILE'),
           centerTitle: true,
-          backgroundColor: Colors.blue.withOpacity(0.7),
+          backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
         ),
         body: SafeArea(
           child: Padding(
@@ -480,21 +481,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       ),
                     ],
                   ),
-                  Expanded(
+                  const Expanded(
                     child: ExpansionTile(
-                      title: const Text('Terms & Conditions'),
+                      title: Text('Terms & Conditions'),
                       children: [
                         ListTile(
                           title: Expanded(
                             child: Row(
                               children: [
-                                const Icon(
+                                Icon(
                                   UniconsLine.clipboard_notes,
                                   size: 100,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: const [
+                                  children: [
                                     Text('Terms of Service'),
                                     Text('Privacy Statement'),
                                     Text('Legal Notice'),

@@ -51,13 +51,16 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     } catch (e) {
       if (kDebugMode) {
-        print(e);
+        debugPrint(e.toString());
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // Always use GetMaterialApp so GetX navigation and features remain
+    // available on all platforms. Apply a Cupertino-like theme on iOS.
+    final isIOS = defaultTargetPlatform == TargetPlatform.iOS;
     return GetMaterialApp(
       //initialRoute: loggedInUser == null ? LoginScreen.id : Dashboard.id,
       debugShowCheckedModeBanner: false,
@@ -80,8 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
       title: 'tvnet',
       themeMode: ThemeMode.dark,
-      theme: MyTheme.lightTheme,
-      darkTheme: MyTheme.darkTheme,
+      theme: isIOS ? MyTheme.cupertinoTheme : MyTheme.lightTheme,
+      darkTheme: isIOS ? MyTheme.cupertinoDarkTheme : MyTheme.darkTheme,
       home: const SplashScreenPage(),
     );
   }

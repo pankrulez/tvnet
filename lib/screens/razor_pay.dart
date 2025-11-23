@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:tvnet/resources/shadedContainer.dart';
+import 'package:tvnet/resources/shaded_container.dart';
 import '../resources/constants.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:tvnet/platform/razorpay_interface.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:tvnet/resources/simple_radio.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
 
 enum RechargeSchedule { later, now }
 
@@ -35,7 +37,7 @@ class _RazorPayState extends State<RazorPay> {
   @override
   Widget build(BuildContext context) {
     bool darkModeEnabled = false;
-    _checkIfDarkModeEnabled() {
+    checkIfDarkModeEnabled() {
       final ThemeData theme = Theme.of(context);
       theme.brightness == MyTheme.darkTheme.brightness
           ? darkModeEnabled = true
@@ -51,13 +53,11 @@ class _RazorPayState extends State<RazorPay> {
     //Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           elevation: 5.0,
           title: const Text('PLAN DETAILS'),
           centerTitle: true,
-          backgroundColor: Colors.blue.withOpacity(0.7),
-
-          //flexibleSpace: kGradientContainer,
+          backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
         ),
         body: SafeArea(
           child: Padding(
@@ -95,7 +95,7 @@ class _RazorPayState extends State<RazorPay> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Card(
-                        color: _checkIfDarkModeEnabled()
+                        color: checkIfDarkModeEnabled()
                             ? darkModeBoxColor
                             : lightModeBoxColor,
                         shape: RoundedRectangleBorder(
@@ -110,7 +110,7 @@ class _RazorPayState extends State<RazorPay> {
                                 text: 'Plan Name - ',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: _checkIfDarkModeEnabled()
+                                  color: checkIfDarkModeEnabled()
                                       ? Colors.white
                                       : Colors.black,
                                 ),
@@ -118,7 +118,7 @@ class _RazorPayState extends State<RazorPay> {
                               TextSpan(
                                   text: plan,
                                   style: TextStyle(
-                                    color: _checkIfDarkModeEnabled()
+                                    color: checkIfDarkModeEnabled()
                                         ? Colors.white
                                         : Colors.black,
                                   )),
@@ -316,15 +316,13 @@ class _RazorPayState extends State<RazorPay> {
                                         'Later',
                                         style: kItalicText,
                                       ),
-                                      leading: Radio<RechargeSchedule>(
+                                      leading: SimpleRadio<RechargeSchedule>(
                                         value: RechargeSchedule.later,
                                         groupValue: schedule,
                                         onChanged: (RechargeSchedule? value) {
-                                          setState(
-                                            () {
-                                              schedule = value;
-                                            },
-                                          );
+                                          setState(() {
+                                            schedule = value;
+                                          });
                                         },
                                       ),
                                     ),
@@ -335,15 +333,13 @@ class _RazorPayState extends State<RazorPay> {
                                         'Now',
                                         style: kItalicText,
                                       ),
-                                      leading: Radio<RechargeSchedule>(
+                                      leading: SimpleRadio<RechargeSchedule>(
                                         value: RechargeSchedule.now,
                                         groupValue: schedule,
                                         onChanged: (RechargeSchedule? value) {
-                                          setState(
-                                            () {
-                                              schedule = value;
-                                            },
-                                          );
+                                          setState(() {
+                                            schedule = value;
+                                          });
                                         },
                                       ),
                                     ),
@@ -431,7 +427,7 @@ class _RazorPayState extends State<RazorPay> {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     if (kDebugMode) {
-      print('Success Response: $response');
+      debugPrint('Success Response: $response');
     }
     Fluttertoast.showToast(
         msg: "SUCCESS: ${response.paymentId!}",
@@ -440,7 +436,7 @@ class _RazorPayState extends State<RazorPay> {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     if (kDebugMode) {
-      print('Error Response: $response');
+      debugPrint('Error Response: $response');
     }
     Fluttertoast.showToast(
         msg: "ERROR: ${response.code} - ${response.message!}",
@@ -449,7 +445,7 @@ class _RazorPayState extends State<RazorPay> {
 
   void _handleExternalWallet(ExternalWalletResponse response) {
     if (kDebugMode) {
-      print('External SDK Response: $response');
+      debugPrint('External SDK Response: $response');
     }
     Fluttertoast.showToast(
         msg: "EXTERNAL_WALLET: ${response.walletName!}",

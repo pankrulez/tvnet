@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
 
-import '../resources/constants.dart';
 
 class TransactionHistory extends StatefulWidget {
   static String id = 'transaction_history_page';
@@ -18,14 +18,14 @@ class _TransactionHistoryState extends State<TransactionHistory> {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           elevation: 5.0,
           title: const Text('TRANSACTION HISTORY'),
           centerTitle: true,
-          backgroundColor: Colors.blue.withOpacity(0.7),
+          backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
           bottom: TabBar(
             indicator: BoxDecoration(
-              color: Colors.lightBlueAccent.withOpacity(0.5),
+              color: Colors.lightBlueAccent.withAlpha((0.5 * 255).round()),
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(15.0),
                 topLeft: Radius.circular(15.0),

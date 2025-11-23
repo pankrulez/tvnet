@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tvnet/resources/shadedContainer.dart';
+import 'package:tvnet/resources/shaded_container.dart';
 import 'package:tvnet/screens/documents.dart';
 import 'package:tvnet/screens/edit_profile.dart';
 import '../resources/constants.dart';
@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Brightness brightness = MediaQuery.of(context).platformBrightness;
+    //Brightness brightness = MediaQuery.of(context).platformBrightness;
     Orientation orientation = MediaQuery.of(context).orientation;
     //Size size = MediaQuery.of(context).size;
     return SafeArea(
@@ -92,9 +92,9 @@ class ProfilePage extends StatelessWidget {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FontStyle.italic,
-                                  color: Brightness.dark == true
-                                      ? Colors.white
-                                      : Colors.black,
+              color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
                                 ),
                               ),
                               TextSpan(

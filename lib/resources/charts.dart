@@ -9,7 +9,7 @@ class PieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool darkModeEnabled = false;
-    _checkIfDarkModeEnabled() {
+    checkIfDarkModeEnabled() {
       final ThemeData theme = Theme.of(context);
       theme.brightness == MyTheme.darkTheme.brightness
           ? darkModeEnabled = true
@@ -63,11 +63,10 @@ class PieChart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SfCircularChart(
-                        title: null,
-                        legend: Legend(
+                        legend: const Legend(
                           isVisible: true,
                           position: LegendPosition.bottom,
-                          offset: const Offset(0.0, 0.0),
+                          offset: Offset(0.0, 0.0),
                           overflowMode: LegendItemOverflowMode.wrap,
                           toggleSeriesVisibility: false,
                         ),
@@ -83,18 +82,18 @@ class PieChart extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Card(
-                          color: _checkIfDarkModeEnabled()
+                          color: checkIfDarkModeEnabled()
                               ? darkModeBoxColor
                               : lightModeBoxColor,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(color: Colors.deepOrange),
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Total Data',
                                   ),
@@ -111,18 +110,18 @@ class PieChart extends StatelessWidget {
                       ),
                       Expanded(
                         child: Card(
-                          color: _checkIfDarkModeEnabled()
+                          color: checkIfDarkModeEnabled()
                               ? darkModeBoxColor
                               : lightModeBoxColor,
                           shape: RoundedRectangleBorder(
                             side: const BorderSide(color: Colors.deepOrange),
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Column(
-                                children: const [
+                                children: [
                                   Text(
                                     'Remaining Data',
                                   ),
@@ -140,10 +139,10 @@ class PieChart extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(
+                const Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                           '*All numeric data are rounded off to their nearest value'),
                     ],
@@ -198,7 +197,7 @@ class BarGraphChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool darkModeEnabled = false;
-    _checkIfDarkModeEnabled() {
+    checkIfDarkModeEnabled() {
       final ThemeData theme = Theme.of(context);
       theme.brightness == MyTheme.darkTheme.brightness
           ? darkModeEnabled = true
@@ -219,13 +218,13 @@ class BarGraphChart extends StatelessWidget {
               : constraints.maxWidth,
           child: Column(
             children: [
-              Expanded(
+              const Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Column(
-                      children: const [
+                      children: [
                         Text(
                           'Data used in last 7 days',
                           style: TextStyle(
@@ -252,7 +251,7 @@ class BarGraphChart extends StatelessWidget {
                   children: [
                     Expanded(
                       child: SfCartesianChart(
-                        legend: Legend(
+                        legend: const Legend(
                           isVisible: true,
                           position: LegendPosition.bottom,
                         ),
@@ -263,8 +262,8 @@ class BarGraphChart extends StatelessWidget {
                           interval: 1,
                           edgeLabelPlacement: EdgeLabelPlacement.hide,
                         ),
-                        primaryYAxis: NumericAxis(
-                          axisLine: const AxisLine(width: 0),
+                        primaryYAxis: const NumericAxis(
+                          axisLine: AxisLine(width: 0),
                           maximum: 30,
                           minimum: 0,
                           interval: 5,
@@ -299,18 +298,18 @@ class BarGraphChart extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Card(
-                        color: _checkIfDarkModeEnabled()
+                        color: checkIfDarkModeEnabled()
                             ? darkModeBoxColor
                             : lightModeBoxColor,
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.deepOrange),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
-                              children: const [
+                              children: [
                                 Text(
                                   'Total Data',
                                 ),
@@ -327,18 +326,18 @@ class BarGraphChart extends StatelessWidget {
                     ),
                     Expanded(
                       child: Card(
-                        color: _checkIfDarkModeEnabled()
+                        color: checkIfDarkModeEnabled()
                             ? darkModeBoxColor
                             : lightModeBoxColor,
                         shape: RoundedRectangleBorder(
                           side: const BorderSide(color: Colors.deepOrange),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Column(
-                              children: const [
+                              children: [
                                 Text(
                                   'Remaining Data',
                                 ),
@@ -356,10 +355,10 @@ class BarGraphChart extends StatelessWidget {
                   ],
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text(
                         '*All numeric data are rounded off to their nearest value'),
                   ],

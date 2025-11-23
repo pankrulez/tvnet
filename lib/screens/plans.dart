@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tvnet/resources/charts.dart';
-import 'package:get/get.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
+//import 'package:tvnet/resources/charts.dart';
+//import 'package:get/get.dart';
 import 'package:tvnet/resources/internet_plans.dart';
 
 class AllPlans extends StatelessWidget {
@@ -13,7 +14,7 @@ class AllPlans extends StatelessWidget {
       initialIndex: 0,
       length: 5,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           actions: [
             IconButton(
               onPressed: () {
@@ -28,11 +29,11 @@ class AllPlans extends StatelessWidget {
           elevation: 5.0,
           title: const Text('INTERNET PLANS'),
           centerTitle: true,
-          backgroundColor: Colors.blue.withOpacity(0.5),
+          backgroundColor: Colors.blue.withAlpha((0.5 * 255).round()),
           bottom: TabBar(
             isScrollable: true,
             indicator: BoxDecoration(
-              color: Colors.lightBlueAccent.withOpacity(0.5),
+              color: Colors.lightBlueAccent.withAlpha((0.5 * 255).round()),
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(15.0),
                 topLeft: Radius.circular(15.0),
@@ -59,16 +60,16 @@ class AllPlans extends StatelessWidget {
             indicatorColor: Colors.white,
           ),
         ),
-        body: SafeArea(
+        body: const SafeArea(
           child: Material(
             color: Colors.transparent,
             child: Padding(
               padding:
-                  const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+                  EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
               child: TabBarView(
                 children: <Widget>[
                   Column(
-                    children: const [
+                    children: [
                       Expanded(
                         child: InternetPlans(),
                       ),
@@ -79,7 +80,7 @@ class AllPlans extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             'Space for search bar',
                             style: TextStyle(
@@ -88,17 +89,17 @@ class AllPlans extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Expanded(
+                      Expanded(
                         child: InternetPlans(),
                       ),
-                      const SizedBox(height: 20.0),
+                      SizedBox(height: 20.0),
                     ],
                   ),
                   Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             'Space for search bar',
                             style: TextStyle(
@@ -107,17 +108,17 @@ class AllPlans extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Expanded(
+                      Expanded(
                         child: InternetPlans(),
                       ),
-                      const SizedBox(height: 20.0),
+                      SizedBox(height: 20.0),
                     ],
                   ),
                   Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             'Space for search bar',
                             style: TextStyle(
@@ -126,17 +127,17 @@ class AllPlans extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Expanded(
+                      Expanded(
                         child: InternetPlans(),
                       ),
-                      const SizedBox(height: 20.0),
+                      SizedBox(height: 20.0),
                     ],
                   ),
                   Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Text(
                             'Space for search bar',
                             style: TextStyle(
@@ -145,7 +146,7 @@ class AllPlans extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Expanded(
+                      Expanded(
                         child: InternetPlans(),
                       ),
                     ],
@@ -162,7 +163,7 @@ class AllPlans extends StatelessWidget {
 }
 
 class CustomSearchDelegate extends SearchDelegate {
-  List<String> searchTerms = [
+  final List<String> searchTerms = [
     'limited',
     'unlimited',
     'fup',
@@ -174,6 +175,7 @@ class CustomSearchDelegate extends SearchDelegate {
     '150',
     '200'
   ];
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -182,9 +184,8 @@ class CustomSearchDelegate extends SearchDelegate {
           query = '';
         },
         icon: const Icon(Icons.clear),
-      )
+      ),
     ];
-    throw UnimplementedError();
   }
 
   @override
@@ -195,44 +196,50 @@ class CustomSearchDelegate extends SearchDelegate {
       },
       icon: const Icon(Icons.arrow_back_ios),
     );
-    throw UnimplementedError();
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var items in searchTerms) {
-      if (items.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(items);
+    final List<String> matchQuery = [];
+    for (var item in searchTerms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
       }
     }
     return ListView.builder(
-        itemCount: matchQuery.length,
-        itemBuilder: (context, index) {
-          var result = matchQuery[index];
-          return ListTile(
-            title: Text(result),
-          );
-        });
-    throw UnimplementedError();
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        final result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+          onTap: () {
+            close(context, result);
+          },
+        );
+      },
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
-    for (var items in searchTerms) {
-      if (items.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(items);
+    final List<String> matchQuery = [];
+    for (var item in searchTerms) {
+      if (item.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(item);
       }
     }
     return ListView.builder(
-        itemCount: matchQuery.length,
-        itemBuilder: (context, index) {
-          var result = matchQuery[index];
-          return ListTile(
-            title: Text(result),
-          );
-        });
-    throw UnimplementedError();
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        final result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+          onTap: () {
+            query = result;
+            showResults(context);
+          },
+        );
+      },
+    );
   }
 }

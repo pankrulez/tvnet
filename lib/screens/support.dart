@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvnet/resources/shadedContainer.dart';
+import 'package:tvnet/resources/shaded_container.dart';
 import 'package:tvnet/screens/ticket_history.dart';
 import '../resources/constants.dart';
 import 'create_ticket.dart';
@@ -107,9 +107,9 @@ class SupportPage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Icon(
                           CupertinoIcons.arrow_counterclockwise_circle_fill,
                           color: Colors.lightBlueAccent,
@@ -148,9 +148,9 @@ class SupportPage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Column(
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.wifi_calling_3,
                           color: Colors.lightBlueAccent,
@@ -187,9 +187,9 @@ class SupportPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Icon(
                             Icons.account_circle_sharp,
                             color: Colors.lightBlueAccent,

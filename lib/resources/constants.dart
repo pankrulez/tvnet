@@ -10,6 +10,33 @@ class MyTheme {
     scaffoldBackgroundColor: lightModeBoxColor,
     colorScheme: const ColorScheme.light(),
   );
+
+  // A Material ThemeData tuned to look more Cupertino-like on iOS while
+  // remaining compatible with Material widgets and GetMaterialApp.
+  static final cupertinoTheme = ThemeData(
+    platform: TargetPlatform.iOS,
+    primaryColor: const Color(0xFF007AFF), // iOS blue
+    scaffoldBackgroundColor: lightModeBoxColor,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF007AFF),
+      foregroundColor: Colors.white,
+      elevation: 0,
+    ),
+    colorScheme: const ColorScheme.light(),
+    // Use Cupertino-style fonts if desired; keep defaults for portability.
+  );
+
+  static final cupertinoDarkTheme = ThemeData(
+    platform: TargetPlatform.iOS,
+    primaryColor: const Color(0xFF0A84FF),
+    scaffoldBackgroundColor: darkModeBoxColor,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF0A84FF),
+      foregroundColor: Colors.white,
+      elevation: 0,
+    ),
+    colorScheme: const ColorScheme.dark(),
+  );
 }
 
 TextStyle kButtonText =
@@ -30,7 +57,7 @@ Color lightModeShadow1Color = Colors.grey.shade500;
 Color lightModeShadow2Color = Colors.white;
 Color darkModeBoxColor = Colors.grey.shade900;
 Color darkModeShadow1Color = Colors.black;
-Color darkModeShadow2Color = Colors.grey.shade800.withOpacity(0.8);
+Color darkModeShadow2Color = Colors.grey.shade800.withAlpha((0.8 * 255).round());
 
 const TextStyle kMaterialTextStyle = TextStyle(
   fontSize: 40.0,
@@ -99,11 +126,11 @@ class GradientButton extends StatelessWidget {
 }
 
 class TicketContainer extends StatelessWidget {
-  final getMessage;
-  final boxColor;
-  final textColor;
-  final margin;
-  final padding;
+  final String getMessage;
+  final Color boxColor;
+  final Color? textColor;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
 
   const TicketContainer(
       {Key? key,

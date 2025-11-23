@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:tvnet/resources/shadedContainer.dart';
+import 'package:tvnet/resources/shaded_container.dart';
 import 'package:tvnet/screens/transaction_history.dart';
 import '../screens/create_ticket.dart';
 import '../screens/data_usage.dart';
 import 'constants.dart';
 
 class DashboardResources extends StatefulWidget {
-  final navKey;
+  final dynamic navKey;
 
   const DashboardResources({Key? key, required this.navKey}) : super(key: key);
 
@@ -36,7 +36,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
       }
     } catch (e) {
       if (kDebugMode) {
-        print(e);
+        debugPrint(e.toString());
       }
     }
   }
@@ -70,9 +70,9 @@ class _DashboardResourcesState extends State<DashboardResources> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double width = size.width.toDouble();
-    double height = size.height.toDouble();
+    //double height = size.height.toDouble();
     bool darkModeEnabled = false;
-    _checkIfDarkModeEnabled() {
+    checkIfDarkModeEnabled() {
       final ThemeData theme = Theme.of(context);
       theme.brightness == MyTheme.darkTheme.brightness
           ? darkModeEnabled = true
@@ -91,7 +91,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
         ClipPath(
           clipper: MyClipper(),
           child: Container(
-            color: Colors.blue.withOpacity(0.7),
+            color: Colors.blue.withAlpha((0.7 * 255).round()),
             padding: const EdgeInsets.only(bottom: 40),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,7 +122,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                   ),
                 ),
                 Card(
-                  color: _checkIfDarkModeEnabled()
+                  color: checkIfDarkModeEnabled()
                       ? darkModeBoxColor
                       : lightModeBoxColor,
                   shape: RoundedRectangleBorder(
@@ -142,7 +142,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                           text: 'My Plan - ',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: _checkIfDarkModeEnabled()
+                            color: checkIfDarkModeEnabled()
                                 ? Colors.white
                                 : Colors.black,
                             fontSize: MediaQuery.of(context).orientation ==
@@ -154,7 +154,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                         TextSpan(
                           text: plan,
                           style: TextStyle(
-                            color: _checkIfDarkModeEnabled()
+                            color: checkIfDarkModeEnabled()
                                 ? Colors.white
                                 : Colors.black,
                             fontSize: MediaQuery.of(context).orientation ==
@@ -263,7 +263,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                           text: 'Used ',
                           style: TextStyle(
                             fontStyle: FontStyle.italic,
-                            color: _checkIfDarkModeEnabled()
+                            color: checkIfDarkModeEnabled()
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -276,7 +276,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                           text: ' Days of ',
                           style: TextStyle(
                             fontStyle: FontStyle.italic,
-                            color: _checkIfDarkModeEnabled()
+                            color: checkIfDarkModeEnabled()
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -289,7 +289,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                           text: ' Days',
                           style: TextStyle(
                             fontStyle: FontStyle.italic,
-                            color: _checkIfDarkModeEnabled()
+                            color: checkIfDarkModeEnabled()
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -319,7 +319,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                           text: 'Your plan will expire in ',
                           style: TextStyle(
                             fontStyle: FontStyle.italic,
-                            color: _checkIfDarkModeEnabled()
+                            color: checkIfDarkModeEnabled()
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -332,7 +332,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                           text: ' Days',
                           style: TextStyle(
                             fontStyle: FontStyle.italic,
-                            color: _checkIfDarkModeEnabled()
+                            color: checkIfDarkModeEnabled()
                                 ? Colors.white
                                 : Colors.black,
                           ),
@@ -451,7 +451,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                             text: '₹ ',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: _checkIfDarkModeEnabled()
+                              color: checkIfDarkModeEnabled()
                                   ? Colors.white
                                   : Colors.black,
                             ),
@@ -509,7 +509,7 @@ class _DashboardResourcesState extends State<DashboardResources> {
                                       text: 'Cr ₹ ',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: _checkIfDarkModeEnabled()
+                                        color: checkIfDarkModeEnabled()
                                             ? Colors.white
                                             : Colors.black,
                                       ),

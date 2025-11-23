@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tvnet/resources/shadedContainer.dart';
+import 'package:tvnet/resources/shaded_container.dart';
 import '../resources/constants.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
+import 'package:tvnet/widgets/adaptive_controls.dart';
 
 class UploadNewDocuments extends StatefulWidget {
   static String id = 'upload_new_docs_page';
@@ -18,11 +20,11 @@ class _UploadNewDocumentsState extends State<UploadNewDocuments> {
     //Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           elevation: 5.0,
           title: const Text('UPLOAD DOCUMENTS'),
           centerTitle: true,
-          backgroundColor: Colors.blue.withOpacity(0.7),
+          backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
         ),
         body: Column(
           children: [
@@ -97,24 +99,17 @@ class _UploadNewDocumentsState extends State<UploadNewDocuments> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GradientButton(
-                  padding: const EdgeInsets.only(
-                    top: 12,
-                    bottom: 12,
-                    right: 35,
-                    left: 35,
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'CHOOSE FILE',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 17,
-                      ),
+                AdaptiveButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  onPressed: () {},
+                  child: const Text(
+                    'CHOOSE FILE',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 17,
                     ),
                   ),
-                  onTap: () {},
                 ),
               ],
             ),

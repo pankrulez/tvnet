@@ -30,14 +30,14 @@ class _DrawerWindowState extends State<DrawerWindow> {
         loggedInUser = user;
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 
   @override
   Widget build(BuildContext context) {
     bool darkModeEnabled = false;
-    _checkIfDarkModeEnabled() {
+    checkIfDarkModeEnabled() {
       final ThemeData theme = Theme.of(context);
       theme.brightness == MyTheme.darkTheme.brightness
           ? darkModeEnabled = true
@@ -52,7 +52,7 @@ class _DrawerWindowState extends State<DrawerWindow> {
     return Drawer(
       elevation: 6,
       backgroundColor:
-          _checkIfDarkModeEnabled() ? darkModeBoxColor : lightModeBoxColor,
+          checkIfDarkModeEnabled() ? darkModeBoxColor : lightModeBoxColor,
       child: ListView(
         padding: const EdgeInsets.only(right: 20, left: 20),
         children: [
@@ -65,8 +65,8 @@ class _DrawerWindowState extends State<DrawerWindow> {
             ),
           ),
           ListTile(
-            title: Row(
-              children: const [
+            title: const Row(
+              children: [
                 Icon(
                   Icons.auto_graph_outlined,
                   color: Colors.orangeAccent,
@@ -80,8 +80,8 @@ class _DrawerWindowState extends State<DrawerWindow> {
             },
           ),
           ListTile(
-            title: Row(
-              children: const [
+            title: const Row(
+              children: [
                 Icon(
                   Icons.switch_account_outlined,
                   color: Colors.green,
@@ -95,8 +95,8 @@ class _DrawerWindowState extends State<DrawerWindow> {
             },
           ),
           ListTile(
-            title: Row(
-              children: const [
+            title: const Row(
+              children: [
                 Icon(
                   Icons.power_settings_new_rounded,
                   color: Colors.redAccent,

@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tvnet/resources/dashboard_resources.dart';
 import 'package:tvnet/resources/drawer.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
 import 'package:tvnet/screens/my_plan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tvnet/screens/profile.dart';
@@ -82,11 +83,9 @@ class _DashboardState extends State<Dashboard> {
         child: Scaffold(
           extendBody: true,
           drawerEnableOpenDragGesture: true,
-          drawerScrimColor: Colors.black.withOpacity(0.5),
+          drawerScrimColor: Colors.black.withAlpha((0.5 * 255).round()),
           drawer: const DrawerWindow(),
-          appBar: AppBar(
-            elevation: 0.0,
-            bottomOpacity: 0,
+          appBar: AdaptiveAppBar(
             title: Text(
               _selectedTitle.elementAt(selectedIndex),
               style: const TextStyle(
@@ -94,8 +93,8 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             centerTitle: true,
-            backgroundColor: Colors.blue.withOpacity(0.7),
-            //flexibleSpace: kGradientContainer,
+            backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
+            elevation: 0.0,
           ),
           body: _widgetOptions.elementAt(selectedIndex),
           bottomNavigationBar: Theme(
@@ -105,7 +104,7 @@ class _DashboardState extends State<Dashboard> {
             child: CurvedNavigationBar(
               key: navigationKey,
               backgroundColor: Colors.transparent,
-              color: Colors.blue.withOpacity(0.7),
+              color: Colors.blue.withAlpha((0.7 * 255).round()),
               buttonBackgroundColor: Colors.deepOrangeAccent,
               animationCurve: Curves.easeInOut,
               animationDuration: const Duration(milliseconds: 600),

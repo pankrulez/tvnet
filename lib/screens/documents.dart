@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tvnet/screens/upload_documents.dart';
-import '../resources/constants.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
+//import '../resources/constants.dart';
 
 class UploadedDocuments extends StatelessWidget {
   static String id = 'uploaded_docs_page';
@@ -10,17 +11,17 @@ class UploadedDocuments extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           elevation: 5.0,
           title: const Text('DOCUMENTS'),
           centerTitle: true,
-          backgroundColor: Colors.blue.withOpacity(0.7),
+          backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
         ),
         body: Column(
           children: [
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text(
                   'Uploaded Documents',
                   style: TextStyle(
@@ -54,7 +55,7 @@ class UploadedDocuments extends StatelessWidget {
                 ],
               ),
             ),
-            Row(
+            const Row(
               children: [],
             ),
           ],

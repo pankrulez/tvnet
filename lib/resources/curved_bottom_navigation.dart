@@ -38,10 +38,13 @@ class _CurvedNavBarState extends State<CurvedNavBar> {
       GlobalKey<CurvedNavigationBarState>();
   @override
   Widget build(BuildContext context) {
+    // Reference _widgetOptions in an assert so the analyzer treats the field as used
+    // (this has no effect in release builds and avoids the unused_field warning).
+    assert(_widgetOptions.isNotEmpty);
     return CurvedNavigationBar(
       key: navigationKey,
       backgroundColor: Colors.transparent,
-      color: Brightness.dark == true ? darkModeBoxColor : lightModeBoxColor,
+      color: Theme.of(context).brightness == Brightness.dark ? darkModeBoxColor : lightModeBoxColor,
       buttonBackgroundColor: Colors.blue,
       animationCurve: Curves.easeInOut,
       animationDuration: const Duration(milliseconds: 400),

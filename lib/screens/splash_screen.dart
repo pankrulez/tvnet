@@ -32,7 +32,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       }
     } catch (e) {
       if (kDebugMode) {
-        print(e);
+        debugPrint(e.toString());
       }
     }
   }
@@ -50,7 +50,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   Widget build(BuildContext context) {
     bool darkModeEnabled = false;
-    _checkIfDarkModeEnabled() {
+    checkIfDarkModeEnabled() {
       final ThemeData theme = Theme.of(context);
       theme.brightness == MyTheme.darkTheme.brightness
           ? darkModeEnabled = true
@@ -63,7 +63,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
     }
 
     return Container(
-      color: _checkIfDarkModeEnabled() ? darkModeBoxColor : lightModeBoxColor,
+      color: checkIfDarkModeEnabled() ? darkModeBoxColor : lightModeBoxColor,
       child: const Center(
         child: Icon(
           Icons.backup_rounded,

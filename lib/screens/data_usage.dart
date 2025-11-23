@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tvnet/resources/charts.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
 
 class DataUsage extends StatelessWidget {
   static String id = 'data_usage_screen';
@@ -13,11 +14,11 @@ class DataUsage extends StatelessWidget {
       initialIndex: 0,
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AdaptiveAppBar(
           elevation: 5.0,
           title: const Text('DATA USAGE DETAILS'),
           centerTitle: true,
-          backgroundColor: Colors.blue.withOpacity(0.7),
+          backgroundColor: Colors.blue.withAlpha((0.7 * 255).round()),
           bottom: TabBar(
             tabs: const <Widget>[
               Tab(
@@ -30,7 +31,7 @@ class DataUsage extends StatelessWidget {
             labelColor: Colors.white,
             //indicatorColor: Colors.deepOrange,
             indicator: BoxDecoration(
-              color: Colors.lightBlueAccent.withOpacity(0.5),
+              color: Colors.lightBlueAccent.withAlpha((0.5 * 255).round()),
               borderRadius: const BorderRadius.only(
                 topRight: Radius.circular(25.0),
                 topLeft: Radius.circular(25.0),

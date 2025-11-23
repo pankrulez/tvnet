@@ -1,8 +1,7 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:tvnet/screens/dashboard.dart';
 
@@ -65,13 +64,13 @@ class LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 width: 150.0,
                 height: 150.0,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Expanded(
                       child: Icon(
                         Icons.add_a_photo_outlined,
@@ -146,7 +145,7 @@ class LoginScreenState extends State<LoginScreen> {
                   color: Colors.transparent,
                   child: MaterialButton(
                     color: Colors.lightBlueAccent,
-                    disabledColor: Colors.grey.withOpacity(0.5),
+                    disabledColor: Colors.grey.withAlpha((0.5 * 255).round()),
                     elevation: 5,
                     disabledElevation: 0,
                     shape: const RoundedRectangleBorder(
@@ -154,10 +153,10 @@ class LoginScreenState extends State<LoginScreen> {
                         Radius.circular(30.0),
                       ),
                     ),
-                    onPressed:
-                        _emailErrorText.isNull && _passwordErrorText.isNull
-                            ? _submit
-                            : null,
+          onPressed:
+            _emailErrorText == null && _passwordErrorText == null
+              ? _submit
+              : null,
                     minWidth: 200.0,
                     height: 42.0,
                     child: const Text(
@@ -184,7 +183,7 @@ class LoginScreenState extends State<LoginScreen> {
       pushCode(user);
       showSpinner = false;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 

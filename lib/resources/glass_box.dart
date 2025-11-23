@@ -41,12 +41,12 @@ class GlassBox extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.white.withOpacity(0.5),
+                    color: Colors.white.withAlpha((0.5 * 255).round()),
                   ),
                   gradient: LinearGradient(
                     colors: <Color>[
-                      Colors.deepOrange.withOpacity(0.4),
-                      Colors.blue.withOpacity(0.2),
+                      Colors.deepOrange.withAlpha((0.4 * 255).round()),
+                      Colors.blue.withAlpha((0.2 * 255).round()),
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,

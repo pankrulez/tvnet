@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tvnet/resources/shadedContainer.dart';
+import 'package:tvnet/resources/shaded_container.dart';
 import 'package:tvnet/screens/plans.dart';
 import 'package:tvnet/screens/razor_pay.dart';
 import '../resources/constants.dart';
+import 'package:tvnet/widgets/adaptive_scaffold.dart';
 
 class RechargePlans extends StatelessWidget {
   const RechargePlans({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class RechargePlans extends StatelessWidget {
     Orientation orientation = MediaQuery.of(context).orientation;
     var myPlanData = ModalRoute.of(context)?.settings.arguments.toString();
     String? newIndex = myPlanData;
-    _checkIfDarkModeEnabled() {
+    checkIfDarkModeEnabled() {
       final ThemeData theme = Theme.of(context);
       theme.brightness == MyTheme.darkTheme.brightness
           ? darkModeEnabled = true
@@ -34,8 +35,7 @@ class RechargePlans extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: newIndex == '[1]'
-            ? AppBar(
-                automaticallyImplyLeading: newIndex == '[1]' ? true : false,
+          ? AdaptiveAppBar(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -50,8 +50,8 @@ class RechargePlans extends StatelessWidget {
                                       color: Colors.transparent),
                                 ),
                         ),
-                        Row(
-                          children: const [
+                        const Row(
+                          children: [
                             IconButton(
                               onPressed: null,
                               icon: Icon(Icons.add, color: Colors.transparent),
@@ -60,8 +60,8 @@ class RechargePlans extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Column(
-                      children: const [
+                    const Column(
+                      children: [
                         Text(
                           'MY PLAN',
                           style: TextStyle(),
@@ -92,7 +92,7 @@ class RechargePlans extends StatelessWidget {
                     ),
                   ],
                 ),
-                flexibleSpace: kGradientContainer,
+                // flexibleSpace: kGradientContainer,
               )
             : null,
         body: SafeArea(
@@ -105,7 +105,7 @@ class RechargePlans extends StatelessWidget {
                 ClipPath(
                   clipper: MyClipper(),
                   child: Container(
-                    color: Colors.blue.withOpacity(0.7),
+                    color: Colors.blue.withAlpha((0.7 * 255).round()),
                     padding: const EdgeInsets.only(bottom: 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -136,7 +136,7 @@ class RechargePlans extends StatelessWidget {
                           ),
                         ),
                         Card(
-                          color: _checkIfDarkModeEnabled()
+                          color: checkIfDarkModeEnabled()
                               ? darkModeBoxColor
                               : lightModeBoxColor,
                           shape: RoundedRectangleBorder(
@@ -156,7 +156,7 @@ class RechargePlans extends StatelessWidget {
                                   text: 'My Plan - ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: _checkIfDarkModeEnabled()
+                                    color: checkIfDarkModeEnabled()
                                         ? Colors.white
                                         : Colors.black,
                                     fontSize:
@@ -169,7 +169,7 @@ class RechargePlans extends StatelessWidget {
                                 TextSpan(
                                   text: plan,
                                   style: TextStyle(
-                                    color: _checkIfDarkModeEnabled()
+                                    color: checkIfDarkModeEnabled()
                                         ? Colors.white
                                         : Colors.black,
                                     fontSize:
@@ -332,9 +332,9 @@ class RechargePlans extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text(
                                   'Want to purchase a new plan? ',
                                   style: TextStyle(
