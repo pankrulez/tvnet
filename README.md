@@ -3,7 +3,11 @@
 TVNet is a **cross-platform Flutter application** designed for customers of an internet service provider.  
 It allows users to manage their accounts, view plans, make payments, and access support seamlessly across **Android, iOS, Web, Windows, macOS, and Linux**.
 
-![Tvnet Dashboard](assets/Dashboard.png) ![Tvnet Data Usage](assets/DataUsage.png)
+<p align="center">
+  <img src="assets/Dashboard.png" alt="Tvnet Dashboard" width="300"/>
+  <img src="assets/DataUsage.png" alt="Tvnet Data Usage" width="300"/>
+</p>
+
 
 ---
 
