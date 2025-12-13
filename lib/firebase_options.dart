@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC5OPQSYayoYmx5o6VmukUen4Z3JkLt1zk',
-    appId: '1:268521430828:android:98bf31fcc1fb80a5659689',
-    messagingSenderId: '268521430828',
-    projectId: 'tvnet-a8c4e',
-    storageBucket: 'tvnet-a8c4e.appspot.com',
+    apiKey: 'your-api-key',
+    appId: 'api-id',
+    messagingSenderId: 'id-sender',
+    projectId: 'tvnet1234',
+    storageBucket: 'tvnet-1234.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAzIDwABAqer_vnn5Og-x-PxF4fAm8EFNs',
-    appId: '1:268521430828:ios:0806be8216465b14659689',
-    messagingSenderId: '268521430828',
-    projectId: 'tvnet-a8c4e',
-    storageBucket: 'tvnet-a8c4e.appspot.com',
-    iosClientId: '268521430828-b9267oi3mhes44a4pbd5pqvgre66kk60.apps.googleusercontent.com',
-    iosBundleId: 'com.example.tvnet',
+    apiKey: 'your-api-key',
+    appId: 'api-id',
+    messagingSenderId: 'id-sender',
+    projectId: 'tvnet1234',
+    storageBucket: 'tvnet-1234.appspot.com',
+    iosClientId: 'ios-client-id',
+    iosBundleId: 'com.abc.tvnet',
   );
 }

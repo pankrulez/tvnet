@@ -402,7 +402,7 @@ class _RazorPayState extends State<RazorPay> {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_6nRFj6uxCN7vYZ',
+      'key': 'key_id',
       'amount': num.parse(packagePrice.toString()) * 100,
       'name': providerName,
       'description': 'Internet Plan',
